@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}
+Fees
+{% endblock %}
+
+{% block page_title %}
+Fees
+{% endblock %}
+
+{% block content %}
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>Total Fee</h6>
+
+                <h3 class="text-primary">
+                    ₹{{ "{:,.2f}".format(total_fee_amount) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>Total Paid</h6>
+
+                <h3 class="text-success">
+                    ₹{{ "{:,.2f}".format(total_paid_amount) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>Total Pending</h6>
+
+                <h3 class="text-danger">
+                    ₹{{ "{:,.2f}".format(total_pending_amount) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white">
+
+        <h5 class="mb-0">
+            Fee Records
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Student Name</th>
+
+                        <th>Class</th>
+
+                        <th>Total Fee</th>
+
+                        <th>Paid Amount</th>
+
+                        <th>Pending Amount</th>
+
+                        <th>Due Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for fee in fees %}
+
+                    <tr>
+
+                        <td>
+                            {{ fee.id }}
+                        </td>
+
+                        <td>
+                            {{ fee.student_name }}
+                        </td>
+
+                        <td>
+                            {{ fee.class_name }}
+                        </td>
+
+                        <td>
+                            ₹{{ fee.total_fee }}
+                        </td>
+
+                        <td>
+                            ₹{{ fee.paid_amount }}
+                        </td>
+
+                        <td>
+                            ₹{{ fee.pending_amount }}
+                        </td>
+
+                        <td>
+                            {{ fee.due_date }}
+                        </td>
+
+                        <td>
+
+                            {% if fee.status == 'Paid' %}
+
+                            <span class="badge bg-success">
+                                Paid
+                            </span>
+
+                            {% elif fee.status == 'Pending' %}
+
+                            <span class="badge bg-warning text-dark">
+                                Pending
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger">
+                                {{ fee.status }}
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="8" class="text-center text-muted">
+
+                            No fee records found
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

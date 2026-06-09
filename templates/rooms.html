@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}
+Rooms
+{% endblock %}
+
+{% block page_title %}
+Rooms
+{% endblock %}
+
+{% block content %}
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white">
+
+        <h5 class="mb-0">
+            Hostel Rooms
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Room No</th>
+
+                        <th>Floor</th>
+
+                        <th>Room Type</th>
+
+                        <th>Capacity</th>
+
+                        <th>Occupied</th>
+
+                        <th>Available</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for room in rooms %}
+
+                    <tr>
+
+                        <td>
+                            {{ room.id }}
+                        </td>
+
+                        <td>
+                            {{ room.room_no }}
+                        </td>
+
+                        <td>
+                            {{ room.floor }}
+                        </td>
+
+                        <td>
+                            {{ room.room_type }}
+                        </td>
+
+                        <td>
+                            {{ room.capacity }}
+                        </td>
+
+                        <td>
+                            {{ room.occupied }}
+                        </td>
+
+                        <td>
+
+                            {% set available = room.capacity - room.occupied %}
+
+                            {% if available > 0 %}
+
+                            <span class="badge bg-success">
+                                {{ available }}
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger">
+                                Full
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="{{ url_for('hostel.room_details', room_id=room.id) }}"
+                                class="btn btn-sm btn-primary"
+                            >
+                                <i class="fas fa-eye"></i>
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="8" class="text-center text-muted">
+
+                            No rooms found
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

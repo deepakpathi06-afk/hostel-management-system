@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}
+Students
+{% endblock %}
+
+{% block page_title %}
+Students
+{% endblock %}
+
+{% block content %}
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+
+                <h5 class="mb-0">
+                    Students List
+                </h5>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <form method="GET">
+
+                    <div class="input-group">
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Search Student..."
+                        >
+
+                        <button
+                            class="btn btn-primary"
+                            type="submit"
+                        >
+                            <i class="fas fa-search"></i>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Admission No</th>
+
+                        <th>Name</th>
+
+                        <th>Class</th>
+
+                        <th>Gender</th>
+
+                        <th>Room</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for student in students %}
+
+                    <tr>
+
+                        <td>
+                            {{ student.id }}
+                        </td>
+
+                        <td>
+                            {{ student.admission_no }}
+                        </td>
+
+                        <td>
+                            {{ student.name }}
+                        </td>
+
+                        <td>
+                            {{ student.class_name }}
+                        </td>
+
+                        <td>
+                            {{ student.gender }}
+                        </td>
+
+                        <td>
+                            {{ student.room_no }}
+                        </td>
+
+                        <td>
+
+                            {% if student.status == 'Active' %}
+
+                                <span class="badge bg-success">
+                                    Active
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-danger">
+                                    Inactive
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="{{ url_for('hostel.student_details', student_id=student.id) }}"
+                                class="btn btn-sm btn-primary"
+                            >
+                                <i class="fas fa-eye"></i>
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="8" class="text-center text-muted">
+
+                            No students found
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

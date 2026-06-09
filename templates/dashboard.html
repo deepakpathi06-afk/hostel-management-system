@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block page_title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-4 mb-4">
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card dashboard-card border-0 shadow-sm">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Total Students
+                        </h6>
+
+                        <h2>
+                            {{ total_students }}
+                        </h2>
+
+                    </div>
+
+                    <i class="fas fa-user-graduate fa-3x text-primary"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card dashboard-card border-0 shadow-sm">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Total Rooms
+                        </h6>
+
+                        <h2>
+                            {{ total_rooms }}
+                        </h2>
+
+                    </div>
+
+                    <i class="fas fa-bed fa-3x text-success"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card dashboard-card border-0 shadow-sm">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Occupied Rooms
+                        </h6>
+
+                        <h2>
+                            {{ occupied_rooms }}
+                        </h2>
+
+                    </div>
+
+                    <i class="fas fa-door-closed fa-3x text-warning"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card dashboard-card border-0 shadow-sm">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <h6 class="text-muted">
+                            Available Rooms
+                        </h6>
+
+                        <h2>
+                            {{ available_rooms }}
+                        </h2>
+
+                    </div>
+
+                    <i class="fas fa-door-open fa-3x text-info"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row g-4 mb-4">
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>
+                    Visitors
+                </h6>
+
+                <h3 class="text-primary">
+                    {{ total_visitors }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>
+                    Movements
+                </h6>
+
+                <h3 class="text-success">
+                    {{ total_movements }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>
+                    Fee Records
+                </h6>
+
+                <h3 class="text-warning">
+                    {{ total_fees }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body text-center">
+
+                <h6>
+                    Collections
+                </h6>
+
+                <h3 class="text-danger">
+                    ₹{{ "{:,.0f}".format(total_collection) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+                    Students By Class
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>8th</td>
+
+                            <td>{{ class_8 }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>9th</td>
+
+                            <td>{{ class_9 }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>10th</td>
+
+                            <td>{{ class_10 }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>11th</td>
+
+                            <td>{{ class_11 }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>12th</td>
+
+                            <td>{{ class_12 }}</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+                    Recent Announcements
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                {% for announcement in announcements %}
+
+                    <div class="mb-3">
+
+                        <h6>
+                            {{ announcement.title }}
+                        </h6>
+
+                        <small class="text-muted">
+                            {{ announcement.priority }}
+                        </small>
+
+                    </div>
+
+                {% else %}
+
+                    <p class="text-muted mb-0">
+                        No announcements available.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

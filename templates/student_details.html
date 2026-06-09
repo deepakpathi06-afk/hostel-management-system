@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}
+Student Details
+{% endblock %}
+
+{% block page_title %}
+Student Details
+{% endblock %}
+
+{% block content %}
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+
+        <h5 class="mb-0">
+            {{ student.name }}
+        </h5>
+
+        <a
+            href="{{ url_for('hostel.students') }}"
+            class="btn btn-secondary"
+        >
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </a>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th>Admission No</th>
+                        <td>{{ student.admission_no }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ student.name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Class</th>
+                        <td>{{ student.class_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Gender</th>
+                        <td>{{ student.gender }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>{{ student.date_of_birth }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Blood Group</th>
+                        <td>{{ student.blood_group }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ student.phone }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ student.email }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th>Father Name</th>
+                        <td>{{ student.father_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Mother Name</th>
+                        <td>{{ student.mother_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Guardian Phone</th>
+                        <td>{{ student.guardian_phone }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Emergency Contact</th>
+                        <td>{{ student.emergency_contact }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Room No</th>
+                        <td>{{ student.room_no }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Floor</th>
+                        <td>{{ student.floor }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Bed No</th>
+                        <td>{{ student.bed_no }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Status</th>
+                        <td>
+                            {% if student.status == 'Active' %}
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+                            {% else %}
+                            <span class="badge bg-danger">
+                                Inactive
+                            </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-12">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        Fee Information
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row text-center">
+
+                            <div class="col-md-4">
+
+                                <h6>Total Fee</h6>
+
+                                <h4 class="text-primary">
+                                    ₹{{ student.total_fee }}
+                                </h4>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h6>Paid Fee</h6>
+
+                                <h4 class="text-success">
+                                    ₹{{ student.paid_fee }}
+                                </h4>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h6>Pending Fee</h6>
+
+                                <h4 class="text-danger">
+                                    ₹{{ student.pending_fee }}
+                                </h4>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-12">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        Address
+
+                    </div>
+
+                    <div class="card-body">
+
+                        {{ student.address }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
